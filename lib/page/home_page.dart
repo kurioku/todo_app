@@ -33,11 +33,6 @@ class _HomeState extends State<Home> {
                 title: Text(folders[selectedFolder].title),
                 actions: [
                   IconButton(
-                    onPressed: () {
-                      setState(() {
-                        editMode = !editMode;
-                      });
-                    },
                     icon: editMode
                         ? const Opacity(
                             opacity: 0.5,
@@ -46,6 +41,11 @@ class _HomeState extends State<Home> {
                             ),
                           )
                         : const Icon(Icons.edit_square),
+                    onPressed: () {
+                      setState(() {
+                        editMode = !editMode;
+                      });
+                    },
                   ),
                 ],
               ),
@@ -92,17 +92,6 @@ class _HomeState extends State<Home> {
             ],
           ),
         ),
-        floatingActionButton: Visibility(
-          visible: folders.isNotEmpty & !editMode,
-          child: AddTodo(
-            addTodo: (title) {
-              setState(() {
-                folders[selectedFolder].todos.add(Todo(title: title));
-              });
-              save(folders);
-            },
-          ),
-        ),
         body: Visibility(
           visible: folders.isNotEmpty,
           child: ListTodo(
@@ -128,6 +117,17 @@ class _HomeState extends State<Home> {
                   save(folders);
                 },
               );
+            },
+          ),
+        ),
+        floatingActionButton: Visibility(
+          visible: folders.isNotEmpty & !editMode,
+          child: AddTodo(
+            addTodo: (title) {
+              setState(() {
+                folders[selectedFolder].todos.add(Todo(title: title));
+              });
+              save(folders);
             },
           ),
         ),
