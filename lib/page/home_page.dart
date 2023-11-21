@@ -32,20 +32,23 @@ class _HomeState extends State<Home> {
             : AppBar(
                 title: Text(folders[selectedFolder].title),
                 actions: [
-                  IconButton(
-                    icon: editMode
-                        ? const Opacity(
-                            opacity: 0.5,
-                            child: Icon(
-                              Icons.edit_square,
-                            ),
-                          )
-                        : const Icon(Icons.edit_square),
-                    onPressed: () {
-                      setState(() {
-                        editMode = !editMode;
-                      });
-                    },
+                  Visibility(
+                    visible: folders[selectedFolder].todos.isNotEmpty,
+                    child: IconButton(
+                      icon: editMode
+                          ? const Opacity(
+                              opacity: 0.5,
+                              child: Icon(
+                                Icons.edit_square,
+                              ),
+                            )
+                          : const Icon(Icons.edit_square),
+                      onPressed: () {
+                        setState(() {
+                          editMode = !editMode;
+                        });
+                      },
+                    ),
                   ),
                 ],
               ),
