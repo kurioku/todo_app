@@ -8,17 +8,15 @@ class EditFolder extends StatelessWidget {
     required this.folderTitle,
     required this.deleteFolder,
     required this.index,
-    required this.title,
   });
 
   final void Function(String) folderTitle;
   final void Function() deleteFolder;
   final int index;
-  final String title;
 
   @override
   Widget build(BuildContext context) {
-    final text = TextEditingController(text: title);
+    final text = TextEditingController(text: folders[index].title);
     return AlertDialog(
       title: const Text(
         'Edit Folder',

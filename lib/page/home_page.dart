@@ -72,7 +72,6 @@ class _HomeState extends State<Home> {
                 editFolder: (index) {
                   return EditFolder(
                     index: index,
-                    title: folders[index].title,
                     deleteFolder: () {
                       setState(() {
                         folders.removeAt(index);
@@ -109,7 +108,7 @@ class _HomeState extends State<Home> {
             },
             editTodo: (index) {
               return EditTodo(
-                title: folders[selectedFolder].todos[index].title,
+                index: index,
                 todoTitle: (title) {
                   setState(() {
                     folders[selectedFolder].todos[index].title = title;
