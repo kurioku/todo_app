@@ -40,14 +40,12 @@ class ListTodo extends StatelessWidget {
         itemBuilder: (context, index) {
           return Dismissible(
             key: ValueKey(folders[selectedFolder].todos[index]),
-            onDismissed: (direction) {
+            onDismissed: (_) {
               dismissTodo(index);
             },
             child: ListTile(
               leading: const Icon(Icons.edit),
-              title: Text(
-                folders[selectedFolder].todos[index].title,
-              ),
+              title: Text(folders[selectedFolder].todos[index].title),
               onTap: () {
                 showDialog(
                   context: context,
