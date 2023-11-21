@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../data/data_export.dart';
 
-class EditTodo extends StatelessWidget {
+class EditTodo extends HookWidget {
   const EditTodo({
     super.key,
     required this.todoTitle,
@@ -14,9 +15,8 @@ class EditTodo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final text = TextEditingController(
-      text: folders[selectedFolder].todos[index].title,
-    );
+    final text = useTextEditingController(
+        text: folders[selectedFolder].todos[index].title);
     return AlertDialog(
       title: const Text(
         'Edit Todo',

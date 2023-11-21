@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '/data/data_export.dart';
 
-class EditFolder extends StatelessWidget {
+class EditFolder extends HookWidget {
   const EditFolder({
     super.key,
     required this.folderTitle,
@@ -16,7 +17,7 @@ class EditFolder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final text = TextEditingController(text: folders[index].title);
+    final text = useTextEditingController(text: folders[index].title);
     return AlertDialog(
       title: const Text(
         'Edit Folder',
