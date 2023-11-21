@@ -10,7 +10,7 @@ class ListTodo extends StatelessWidget {
     required this.editTodo,
   });
 
-  final void Function(int) checkTodo;
+  final void Function(int, bool) checkTodo;
   final void Function(int) dismissTodo;
   final Function(int) editTodo;
 
@@ -25,8 +25,8 @@ class ListTodo extends StatelessWidget {
         itemBuilder: (context, index) {
           return CheckboxListTile(
             value: folders[selectedFolder].todos[index].check,
-            onChanged: (_) {
-              checkTodo(index);
+            onChanged: (value) {
+              checkTodo(index, value!);
             },
             title: Text(
               folders[selectedFolder].todos[index].title,

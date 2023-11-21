@@ -1,13 +1,13 @@
 part of 'folder_data.dart';
 
 class Todo {
-  String title;
-  bool check;
-
   Todo({
     required this.title,
     this.check = false,
   });
+
+  late final String title;
+  bool check;
 
   Map toJson() {
     return {

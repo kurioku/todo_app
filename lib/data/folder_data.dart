@@ -5,13 +5,13 @@ int selectedFolder = 0;
 bool editMode = false;
 
 class Folder {
-  String title;
-  List<Todo> todos;
-
   Folder({
     required this.title,
     required this.todos,
   });
+
+  late final String title;
+  final List<Todo> todos;
 
   Map toJson() {
     return {

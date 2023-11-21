@@ -97,10 +97,9 @@ class _HomeState extends State<Home> {
         body: Visibility(
           visible: folders.isNotEmpty,
           child: ListTodo(
-            checkTodo: (index) {
-              bool check = folders[selectedFolder].todos[index].check;
+            checkTodo: (index, value) {
               setState(() {
-                check = !check;
+                folders[selectedFolder].todos[index].check = value;
               });
               save(folders);
             },
