@@ -25,9 +25,6 @@ final lightTheme = ThemeData.light().copyWith(
       borderRadius: BorderRadius.all(Radius.zero),
     ),
   ),
-  textTheme: const TextTheme(
-    bodyLarge: TextStyle(fontSize: 20),
-  ),
 );
 
 final darkTheme = ThemeData.dark().copyWith(
@@ -57,8 +54,5 @@ final darkTheme = ThemeData.dark().copyWith(
     border: OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.zero),
     ),
-  ),
-  textTheme: const TextTheme(
-    bodyLarge: TextStyle(fontSize: 20),
   ),
 );
