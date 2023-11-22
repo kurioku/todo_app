@@ -6,7 +6,7 @@ class Todo {
     this.check = false,
   });
 
-  late final String title;
+  String title;
   bool check;
 
   Map toJson() {

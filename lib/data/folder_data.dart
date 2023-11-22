@@ -10,8 +10,8 @@ class Folder {
     required this.todos,
   });
 
-  late final String title;
-  final List<Todo> todos;
+  String title;
+  List<Todo> todos;
 
   Map toJson() {
     return {
