@@ -31,6 +31,9 @@ class ListTodo extends StatelessWidget {
             },
             title: Text(
               folders[selectedFolder].todos[index].title,
+              style: const TextStyle(
+                fontSize: 20,
+              ),
             ),
           );
         },
@@ -46,7 +49,12 @@ class ListTodo extends StatelessWidget {
             },
             child: ListTile(
               leading: const Icon(Icons.edit),
-              title: Text(folders[selectedFolder].todos[index].title),
+              title: Text(
+                folders[selectedFolder].todos[index].title,
+                style: const TextStyle(
+                  fontSize: 20,
+                ),
+              ),
               onTap: () {
                 showDialog(
                   context: context,

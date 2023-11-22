@@ -25,11 +25,12 @@ class ListFolder extends StatelessWidget {
           ),
           title: Text(
             folders[index].title,
+            style: const TextStyle(
+              fontSize: 20,
+            ),
           ),
           onTap: () {
-            if (index != selectedFolder) {
-              openFolder(index);
-            }
+            if (index != selectedFolder) openFolder(index);
             Navigator.pop(context);
           },
           onLongPress: () {

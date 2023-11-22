@@ -24,11 +24,12 @@ class AddTodo extends StatelessWidget {
               content: TextField(
                 autofocus: true,
                 onSubmitted: (value) {
-                  if (value.isNotEmpty) {
-                    addTodo(value);
-                  }
+                  if (value.isNotEmpty) addTodo(value);
                   Navigator.pop(context);
                 },
+                style: const TextStyle(
+                  fontSize: 20,
+                ),
               ),
             );
           },

@@ -26,11 +26,12 @@ class EditTodo extends HookWidget {
         autofocus: true,
         controller: text,
         onSubmitted: (value) {
-          if (value.isNotEmpty) {
-            todoTitle(value);
-          }
+          if (value.isNotEmpty) todoTitle(value);
           Navigator.pop(context);
         },
+        style: const TextStyle(
+          fontSize: 20,
+        ),
       ),
     );
   }

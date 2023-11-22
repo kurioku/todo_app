@@ -27,11 +27,12 @@ class AddFolder extends StatelessWidget {
               content: TextField(
                 autofocus: true,
                 onSubmitted: (value) {
-                  if (value.isNotEmpty) {
-                    addFolder(value);
-                  }
+                  if (value.isNotEmpty) addFolder(value);
                   Navigator.pop(context);
                 },
+                style: const TextStyle(
+                  fontSize: 20,
+                ),
               ),
             );
           },

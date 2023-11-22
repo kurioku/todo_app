@@ -42,11 +42,12 @@ class EditFolder extends HookWidget {
         autofocus: true,
         controller: text,
         onSubmitted: (value) {
-          if (value.isNotEmpty) {
-            folderTitle(value);
-          }
+          if (value.isNotEmpty) folderTitle(value);
           Navigator.pop(context);
         },
+        style: const TextStyle(
+          fontSize: 20,
+        ),
       ),
     );
   }
