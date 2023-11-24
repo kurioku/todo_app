@@ -80,8 +80,6 @@ class _HomeState extends State<Home> {
                       setState(() {
                         folders.removeAt(index);
                       });
-                      save(folders);
-                      Navigator.pop(context);
                     },
                     folderTitle: (title) {
                       setState(() {
@@ -102,13 +100,11 @@ class _HomeState extends State<Home> {
               setState(() {
                 folders[selectedFolder].todos[index].check = value;
               });
-              save(folders);
             },
             dismissTodo: (index) {
               setState(() {
                 folders[selectedFolder].todos.removeAt(index);
               });
-              save(folders);
             },
             editTodo: (index) {
               return EditTodo(

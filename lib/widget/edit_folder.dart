@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
+import '../data/file_data.dart';
 import '../data/folder_data.dart';
 
 class EditFolder extends HookWidget {
@@ -31,6 +32,8 @@ class EditFolder extends HookWidget {
               selectedFolder--;
             }
             deleteFolder();
+            save(folders);
+            Navigator.pop(context);
           },
           child: const Text(
             'Delete Folder',

@@ -28,6 +28,7 @@ class ListTodo extends StatelessWidget {
             value: folders[selectedFolder].todos[index].check,
             onChanged: (value) {
               checkTodo(index, value!);
+              save(folders);
             },
             title: Text(folders[selectedFolder].todos[index].title),
           );
@@ -41,6 +42,7 @@ class ListTodo extends StatelessWidget {
             key: ValueKey(folders[selectedFolder].todos[index]),
             onDismissed: (_) {
               dismissTodo(index);
+              save(folders);
             },
             child: ListTile(
               leading: const Icon(Icons.edit),
