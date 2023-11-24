@@ -30,9 +30,6 @@ class AddFolder extends StatelessWidget {
                   if (value.isNotEmpty) addFolder(value);
                   Navigator.pop(context);
                 },
-                style: const TextStyle(
-                  fontSize: 20,
-                ),
               ),
             );
           },

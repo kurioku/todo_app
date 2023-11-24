@@ -13,6 +13,7 @@ final lightTheme = ThemeData.light().copyWith(
   ),
   dividerTheme: const DividerThemeData(color: Colors.black26),
   dialogTheme: const DialogTheme(
+    titleTextStyle: TextStyle(color: Colors.black, fontSize: 25),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.all(
         Radius.circular(10),
@@ -24,6 +25,9 @@ final lightTheme = ThemeData.light().copyWith(
     border: OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.zero),
     ),
+  ),
+  textTheme: const TextTheme(
+    bodyLarge: TextStyle(fontSize: 20, color: Colors.black),
   ),
 );
 
@@ -55,4 +59,5 @@ final darkTheme = ThemeData.dark().copyWith(
       borderRadius: BorderRadius.all(Radius.zero),
     ),
   ),
+  textTheme: const TextTheme(bodyLarge: TextStyle(fontSize: 20)),
 );

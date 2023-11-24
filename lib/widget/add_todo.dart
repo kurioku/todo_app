@@ -27,9 +27,6 @@ class AddTodo extends StatelessWidget {
                   if (value.isNotEmpty) addTodo(value);
                   Navigator.pop(context);
                 },
-                style: const TextStyle(
-                  fontSize: 20,
-                ),
               ),
             );
           },

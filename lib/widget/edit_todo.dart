@@ -29,9 +29,6 @@ class EditTodo extends HookWidget {
           if (value.isNotEmpty) todoTitle(value);
           Navigator.pop(context);
         },
-        style: const TextStyle(
-          fontSize: 20,
-        ),
       ),
     );
   }

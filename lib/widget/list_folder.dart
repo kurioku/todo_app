@@ -23,12 +23,7 @@ class ListFolder extends StatelessWidget {
           leading: Icon(
             index == selectedFolder ? Icons.folder_open : Icons.folder,
           ),
-          title: Text(
-            folders[index].title,
-            style: const TextStyle(
-              fontSize: 20,
-            ),
-          ),
+          title: Text(folders[index].title),
           onTap: () {
             if (index != selectedFolder) openFolder(index);
             Navigator.pop(context);

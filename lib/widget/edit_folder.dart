@@ -45,9 +45,6 @@ class EditFolder extends HookWidget {
           if (value.isNotEmpty) folderTitle(value);
           Navigator.pop(context);
         },
-        style: const TextStyle(
-          fontSize: 20,
-        ),
       ),
     );
   }
