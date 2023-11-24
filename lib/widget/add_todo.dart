@@ -32,7 +32,7 @@ class AddTodo extends StatelessWidget {
           },
         );
       },
-      child: const Icon(Icons.note_add),
+      child: const Icon(Icons.add),
     );
   }
 }
