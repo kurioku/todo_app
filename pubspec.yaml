@@ -1,7 +1,7 @@
 name: todo_app
 description: Todo
 publish_to: 'none'
-version: 1.1.6+1
+version: 1.2.0
 
 environment:
   sdk: '>=3.2.2 <4.0.0'
