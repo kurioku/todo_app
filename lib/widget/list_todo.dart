@@ -6,66 +6,62 @@ import '../data/folder_data.dart';
 class ListTodo extends StatelessWidget {
   const ListTodo({
     super.key,
-    required this.checkTodo,
-    required this.dismissTodo,
-    required this.editTodo,
+    required this.check,
+    required this.dismiss,
+    required this.edit,
   });
 
-  final void Function(int, bool) checkTodo;
-  final void Function(int) dismissTodo;
-  final Function(int) editTodo;
+  final void Function(int, bool) check;
+  final void Function(int) dismiss;
+  final Function(int) edit;
 
   @override
   Widget build(BuildContext context) {
+    final todos = folders[selected].todos;
     if (!editMode) {
       return ListView.separated(
-        itemCount: folders[selectedFolder].todos.length,
-        separatorBuilder: (context, index) {
+        itemCount: todos.length,
+        separatorBuilder: (_, __) {
           return const Divider(height: 0);
         },
-        itemBuilder: (context, index) {
+        itemBuilder: (_, i) {
           return CheckboxListTile(
-            value: folders[selectedFolder].todos[index].check,
-            onChanged: (value) {
-              checkTodo(index, value!);
+            value: todos[i].check,
+            onChanged: (v) {
+              check(i, v!);
               save(folders);
             },
-            title: Text(folders[selectedFolder].todos[index].title),
+            title: Text(todos[i].title),
           );
         },
       );
     } else {
       return ReorderableListView.builder(
-        itemCount: folders[selectedFolder].todos.length,
-        itemBuilder: (context, index) {
+        itemCount: todos.length,
+        itemBuilder: (_, i) {
           return Dismissible(
-            key: ValueKey(folders[selectedFolder].todos[index]),
+            key: ValueKey(todos[i]),
             onDismissed: (_) {
-              dismissTodo(index);
+              dismiss(i);
               save(folders);
             },
             child: ListTile(
               leading: const Icon(Icons.edit),
-              title: Text(folders[selectedFolder].todos[index].title),
+              title: Text(todos[i].title),
               onTap: () {
                 showDialog(
                   context: context,
-                  builder: (context) {
-                    return editTodo(index);
-                  },
+                  builder: (_) => edit(i),
                 );
               },
             ),
           );
         },
-        onReorder: (oldIndex, newIndex) {
-          if (oldIndex < newIndex) {
-            newIndex -= 1;
+        onReorder: (last, next) {
+          if (last < next) {
+            next -= 1;
           }
-          folders[selectedFolder].todos.insert(
-                newIndex,
-                folders[selectedFolder].todos.removeAt(oldIndex),
-              );
+          todos.insert(next, todos.removeAt(last));
           save(folders);
         },
       );

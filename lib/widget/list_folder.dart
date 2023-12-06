@@ -5,35 +5,31 @@ import '../data/folder_data.dart';
 class ListFolder extends StatelessWidget {
   const ListFolder({
     super.key,
-    required this.openFolder,
-    required this.editFolder,
+    required this.open,
+    required this.edit,
   });
 
-  final void Function(int) openFolder;
-  final Function(int) editFolder;
+  final void Function(int) open;
+  final Function(int) edit;
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       shrinkWrap: true,
       itemCount: folders.length,
-      itemBuilder: (context, index) {
+      itemBuilder: (_, i) {
         return ListTile(
-          selected: index == selectedFolder,
-          leading: Icon(
-            index == selectedFolder ? Icons.folder_open : Icons.folder,
-          ),
-          title: Text(folders[index].title),
+          selected: i == selected,
+          leading: Icon(i == selected ? Icons.folder_open : Icons.folder),
+          title: Text(folders[i].title),
           onTap: () {
-            if (index != selectedFolder) openFolder(index);
+            if (i != selected) open(i);
             Navigator.pop(context);
           },
           onLongPress: () {
             showDialog(
               context: context,
-              builder: (context) {
-                return editFolder(index);
-              },
+              builder: (_) => edit(i),
             );
           },
         );

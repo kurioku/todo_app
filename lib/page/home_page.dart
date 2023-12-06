@@ -13,77 +13,61 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   @override
-  void initState() {
-    super.initState();
-    _initLoad();
-  }
-
-  Future<void> _initLoad() async {
-    folders = await load();
-    setState(() {});
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        appBar: folders.isEmpty
-            ? AppBar()
-            : AppBar(
-                title: Text(folders[selectedFolder].title),
-                actions: [
-                  Visibility(
-                    visible: folders[selectedFolder].todos.isNotEmpty,
-                    child: IconButton(
-                      icon: editMode
-                          ? const Opacity(
-                              opacity: 0.5,
-                              child: Icon(
-                                Icons.edit_square,
-                              ),
-                            )
-                          : const Icon(Icons.edit_square),
-                      onPressed: () {
-                        setState(() {
-                          editMode = !editMode;
-                        });
-                      },
-                    ),
-                  ),
-                ],
-              ),
-        drawer: Drawer(
-          width: 200,
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      appBar: folders.isEmpty
+          ? AppBar()
+          : AppBar(
+              title: Text(folders[selected].title),
+              actions: [
+                IconButton(
+                  icon: editMode
+                      ? const Opacity(
+                          opacity: 0.5,
+                          child: Icon(Icons.edit_square),
+                        )
+                      : const Icon(Icons.edit_square),
+                  onPressed: () {
+                    setState(() {
+                      editMode = !editMode;
+                    });
+                  },
+                ),
+              ],
+            ),
+      drawer: Drawer(
+        width: 200,
+        child: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               AddFolder(
-                addFolder: (title) {
+                add: (title) {
                   setState(() {
                     folders.add(Folder(title: title, todos: []));
                   });
                   save(folders);
                 },
               ),
-              const Divider(),
+              const Divider(height: 15),
               ListFolder(
-                openFolder: (index) {
+                open: (i) {
                   setState(() {
-                    selectedFolder = index;
+                    selected = i;
                   });
                 },
-                editFolder: (index) {
+                edit: (i) {
                   return EditFolder(
-                    index: index,
-                    deleteFolder: () {
+                    i: i,
+                    delete: () {
                       setState(() {
-                        folders.removeAt(index);
+                        folders.removeAt(i);
                       });
                     },
-                    folderTitle: (title) {
+                    title: (title) {
                       setState(() {
-                        folders[index].title = title;
+                        folders[i].title = title;
                       });
                       save(folders);
                     },
@@ -93,42 +77,42 @@ class _HomeState extends State<Home> {
             ],
           ),
         ),
-        body: Visibility(
-          visible: folders.isNotEmpty,
-          child: ListTodo(
-            checkTodo: (index, value) {
-              setState(() {
-                folders[selectedFolder].todos[index].check = value;
-              });
-            },
-            dismissTodo: (index) {
-              setState(() {
-                folders[selectedFolder].todos.removeAt(index);
-              });
-            },
-            editTodo: (index) {
-              return EditTodo(
-                index: index,
-                todoTitle: (title) {
-                  setState(() {
-                    folders[selectedFolder].todos[index].title = title;
-                  });
-                  save(folders);
-                },
-              );
-            },
-          ),
+      ),
+      body: Visibility(
+        visible: folders.isNotEmpty,
+        child: ListTodo(
+          check: (i, v) {
+            setState(() {
+              folders[selected].todos[i].check = v;
+            });
+          },
+          dismiss: (i) {
+            setState(() {
+              folders[selected].todos.removeAt(i);
+            });
+          },
+          edit: (i) {
+            return EditTodo(
+              i: i,
+              title: (v) {
+                setState(() {
+                  folders[selected].todos[i].title = v;
+                });
+                save(folders);
+              },
+            );
+          },
         ),
-        floatingActionButton: Visibility(
-          visible: folders.isNotEmpty & !editMode,
-          child: AddTodo(
-            addTodo: (title) {
-              setState(() {
-                folders[selectedFolder].todos.add(Todo(title: title));
-              });
-              save(folders);
-            },
-          ),
+      ),
+      floatingActionButton: Visibility(
+        visible: folders.isNotEmpty & !editMode,
+        child: AddTodo(
+          add: (v) {
+            setState(() {
+              folders[selected].todos.add(Todo(title: v));
+            });
+            save(folders);
+          },
         ),
       ),
     );

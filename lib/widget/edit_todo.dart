@@ -6,17 +6,17 @@ import '../data/folder_data.dart';
 class EditTodo extends HookWidget {
   const EditTodo({
     super.key,
-    required this.todoTitle,
-    required this.index,
+    required this.title,
+    required this.i,
   });
 
-  final void Function(String) todoTitle;
-  final int index;
+  final void Function(String) title;
+  final int i;
 
   @override
   Widget build(BuildContext context) {
-    final text = useTextEditingController(
-        text: folders[selectedFolder].todos[index].title);
+    final todo = folders[selected].todos[i];
+    final text = useTextEditingController(text: todo.title);
     return AlertDialog(
       title: const Text(
         'Edit Todo',
@@ -25,8 +25,8 @@ class EditTodo extends HookWidget {
       content: TextField(
         autofocus: true,
         controller: text,
-        onSubmitted: (value) {
-          if (value.isNotEmpty) todoTitle(value);
+        onSubmitted: (v) {
+          if (v != todo.title) title(v);
           Navigator.pop(context);
         },
       ),

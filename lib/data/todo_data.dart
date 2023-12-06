@@ -9,14 +9,14 @@ class Todo {
   String title;
   bool check;
 
-  Map toJson() {
+  Map<String, dynamic> toJson() {
     return {
       'title': title,
       'check': check,
     };
   }
 
-  factory Todo.fromJson(Map json) {
+  factory Todo.fromJson(Map<String, dynamic> json) {
     return Todo(
       title: json['title'],
       check: json['check'],

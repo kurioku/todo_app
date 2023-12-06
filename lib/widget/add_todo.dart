@@ -3,19 +3,18 @@ import 'package:flutter/material.dart';
 class AddTodo extends StatelessWidget {
   const AddTodo({
     super.key,
-    required this.addTodo,
+    required this.add,
   });
 
-  final void Function(String) addTodo;
+  final void Function(String) add;
 
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      shape: const CircleBorder(),
       onPressed: () {
         showDialog(
           context: context,
-          builder: (context) {
+          builder: (_) {
             return AlertDialog(
               title: const Text(
                 'Add Todo',
@@ -23,8 +22,8 @@ class AddTodo extends StatelessWidget {
               ),
               content: TextField(
                 autofocus: true,
-                onSubmitted: (value) {
-                  if (value.isNotEmpty) addTodo(value);
+                onSubmitted: (v) {
+                  if (v.isNotEmpty) add(v);
                   Navigator.pop(context);
                 },
               ),

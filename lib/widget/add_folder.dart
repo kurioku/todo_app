@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 class AddFolder extends StatelessWidget {
   const AddFolder({
     super.key,
-    required this.addFolder,
+    required this.add,
   });
 
-  final void Function(String) addFolder;
+  final void Function(String) add;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class AddFolder extends StatelessWidget {
       onPressed: () {
         showDialog(
           context: context,
-          builder: (context) {
+          builder: (_) {
             return AlertDialog(
               title: const Text(
                 'Add Folder',
@@ -26,8 +26,8 @@ class AddFolder extends StatelessWidget {
               ),
               content: TextField(
                 autofocus: true,
-                onSubmitted: (value) {
-                  if (value.isNotEmpty) addFolder(value);
+                onSubmitted: (v) {
+                  if (v.isNotEmpty) add(v);
                   Navigator.pop(context);
                 },
               ),
